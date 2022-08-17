@@ -16,6 +16,7 @@ competitors. The main objective is to create a book recommendation system for us
 
 
 Content
+
 The Book-Crossing dataset comprises 3 files.
 
 ● Users
