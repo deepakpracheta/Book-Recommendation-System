@@ -1,84 +1,92 @@
-# Capstone-project-UnSupervised_machinelearning_Book-recommendation
+# **BOOK RECOMMENDATION SYSTEM**
+
+
+## **📖Introduction:**
+There is a growing interest in recommender systems that suggest music, films, books, and other products and services to users based on examples of their likes and dislikes. A number of successful start-up companies like Tinder etc are also using this with big companies like Netflix, Facebook, Youtube etc,  Online book stores like Amazon and flipkart  have popular recommendation services, and many libraries have a long history of providing reader's advisory services. Such services are important since readers' preferences are often complex and not readily reduced to keywords or standard subject categories, but rather best illustrated by example.
+
+Existing recommender systems almost exclusively utilize a form of computerized matchmaking called collaborative or social filtering. The system maintains a database of the preferences of individual users, finds other users whose known preferences correlate significantly with a given user, and recommends to a person other items enjoyed by their matched users. This approach assumes that a given user's tastes are generally the same as another user of the system and that a sufficient number of user ratings are available. Items that have not been rated by a sufficient number of users cannot be effectively recommended. Unfortunately, statistics on library use indicate that most books are utilized by very few users. Therefore, collaborative approaches naturally tend to recommend popular titles, perpetuating homogeneity in reading choices. Also, since significant information about other users is required to make recommendations, this approach raises concerns about privacy and access to proprietary customer data. Learning individualized profiles from descriptions of examples (content-based recommending), on the other hand, allows a system to uniquely characterize each user without having to match their interests to someone else's. Items are recommended based on information about the item itself rather than on the preferences of other users. This also allows for the possibility of providing explanations that list content features that caused an item to be recommended; potentially giving readers confidence in the system's recommendations and insight into their own preferences .
 
 
 
+## **Objective:-**
 
-## Description:
+The main objective is to create a book recommendation system for users. Recommender systems are really critical in some industries as they can generate a huge amount of income when they are efficient or also be a way to stand out significantly from competitors.
 
-A Book Recommendation System which recommends the users a selection of books based on their interests.
+## **📖Problem Statement**
 
-Data used for this project was taken from here
+During the last few decades, with the rise of Youtube, Amazon, Netflix, and many other such web services, recommender systems have taken more and more place in our lives. From e-commerce (suggest to buyers articles that could interest them) to online advertisement (suggest to users the right contents, matching their preferences), recommender systems are today unavoidable in our daily online journeys.
+In a very general way, recommender systems are algorithms aimed at suggesting relevant items to users (items being movies to watch, text to read, products to buy, or anything else depending on industries). Recommendation systems are really critical in some industries as they can generate a huge amount of income when they are efficient or also be a way to stand out significantly from competitors. The main objective is to create a book recommendation system for users.
 
-## 1. Data Cleaning and Pre-Processing
-The dataset consists of three tables; Books, Users, and Ratings. Data from all three tables are cleaned and preprocessed separately as defined below briefly:
 
-### For Books Table:
 
-Drop all three Image URL features.
+## **📖Abstract:**
+Recommender systems improve access to relevant products and information by making personalized suggestions based on previous examples of a user's likes and dislikes. Most existing recommender systems use social/collaborative filtering methods that base recommendations on other users' preferences. and content-based filtering  methods that uses information about an item itself to make suggestions.
 
-Check for the number of null values in each column. There comes only 3 null values in the table. Replace these three empty cells with ‘Other’.
-Check for the unique years of publications. Two values in the year column are publishers. Also, for three tuples name of the author of the book was merged with the title of the book. Manually set the values for these three above obtained tuples for each of their features using the ISBN of the book.
-Convert the type of the years of publications feature to the integer.
-By keeping the range of valid years as less than 2022 and not 0, replace all invalid years with the mode of the publications that is 2002.
-Upper-casing all the alphabets present in the ISBN column and removal of duplicate rows from the table.
-For Users Table:
+## **📖Methods Used:-**
 
-Check for null values in the table. The Age column has more than 1 lakh null values.
-Check for unique values present in the Age column. There are many invalid ages present like 0 or 244.
-By keeping the valid age range of readers as 10 to 80 replace null values and invalid ages in the Age column with the mean of valid ages.
-The location column has 3 values city, state, and country. These are split into 3 different columns named; City, State, and Country respectively. In the case of null value, 'other' has been assigned as the entity value.
-Removal of duplicate entries from the table.
+1. Descriptive Statistics
+2. Data Visualization
+3. Machine Learning
+4. Technologies
+5. Python
+6. Pandas
+7. Numpy
+8. Matplotlib
+9. Seaborn
+10. Scikit-learn
+11. Surprise
 
-### For Ratings Table:
+## **📖Dataset:**
+The Book-Crossing dataset comprises 3 files.
 
-Check for null values in the table.
-Check for Rating column and User-ID column to be an integer.
-Removal of punctuation from ISBN column values and if that resulting ISBN is available in the book dataset only then considering else drop that entity.
-Upper-casing all the alphabets present in the ISBN column.
-Removal of duplicate entries from the table.
+1. Users : Contains the users. Note that user IDs (User-ID) have been anonymized and map to integers. Demographic data is provided (Location, Age) if available. Otherwise, these fields contain NULL values.
+2. Books : Books are identified by their respective ISBN. Invalid ISBNs have already been removed from the dataset. Moreover, some content-based information is given (Book-Title, Book-Author, Year-Of-Publication, Publisher), obtained from Amazon Web Services. Note that in the case of several authors, only the first is provided. URLs linking to cover images are also given, appearing in three different flavors (Image-URL-S, Image-URL-M, Image-URL-L), i.e., small, medium, large. These URLs point to the Amazon website.
+3. Ratings : Contains the book rating information. Ratings (Book-Rating) are either explicit, expressed on a scale from 1-10 (higher values denoting higher appreciation), or implicit, expressed by 0.
 
-## 2. Algorithms Implemented:
-### 2.1 Popularity Based Recommendation :
-Popular in the Whole Collection
-We have sorted the dataset according to the total ratings each of the books have received in non-increasing order and then recommended top n books.
+## **📖Project Workflow:**
 
-### Popular at a Given Place
-The dataset was filtered according to a given place (city, state, or country) and then sorted according to total ratings they have received by the users in decreasing order of that place and recommended top n books.
+1. EDA - Performed exploratory data analysis on numerical and categorical data.
+2. Data Cleaning - Missing value imputation,Outlier Treaatment
+3. Feature Selection - Used User-ID,ISBN and Books-Rating for model development.
+4. Model development - Tried Popularity based model(for cold start), Collaborative filtering (Both Memory based and Model based) and Content-Based filtering.
 
-### Books By the Same Author, Publisher of Given Book Name
-For this model, we have sorted the books by rating for the same author and same publisher of the given book and recommended top n books.
 
-### Popular Books Yearly
-This is the most basic model in which we have grouped all the books published in the same year and recommended the top-rated book yearly.
+## **📖Approach:** 
+We will divide this project into three systems of recommendation filtering.
 
-### 2.2 Recommendation using Average Weighted Rating
-We have calculated the weighted score using the below formula for all the books and recommended the books with the highest score.
+As the first system we will be making some small recommendation systems to recommend books for new users(cold-start issue). we can recommend them our top selling, top rated books or our top books with weighted average ratings as well.
 
-score= t/(t+m)∗a + m/(m+t)∗c
+In the second system we will make collaborative filtering recommender. This system finds other users whose known preferences correlate significantly with a given user, and recommends to a person other items enjoyed by their matched users. This system can be divided into two types first  is model based and the second is memory based. For model based we used NMF and SVD and for memory based we build both item-item based and user-item based system.
 
-where,
-t represents the total number of ratings received by the book
-m represents the minimum number of total ratings considered to be included
-a represents the average rating of the book and,
-c represents the mean rating of all the books.
-### 2.3 User-Item Collaborative Filtering Recommendation
-Collaborative Filtering Recommendation System works by considering user ratings and finds cosine similarities in ratings by several users to recommend books. To implement this, we took only those books' data that have at least 50 ratings in all.
+In the third system we will build a content-based filtering. It allows a system to uniquely characterize each user without having to match their interests to someone else's. Items are recommended based on information about the item itself rather than on the preferences of other users. In this system we will make some models on the basis of books title, authors, publishers and the year of publication with the help of tags and users previous purchase history.
 
-### 2.4 Correlation Based Recommendation
-For this model, we have created the correlation matrix considering only those books which have total ratings of more than 50. Then a user-book rating matrix is created. For the input book using the correlation matrix, top books are recommended.
+	
+Based on these above systems we will find the best model via analyzing the results of all models by comparing with each other according to our business needs. By implementing these models efficiently we can easily recommend books to our users and it will surely helps in engaging shoppers and converting them to Customers, Increasing average order value which helps to move forward towards increasing our revenue.
 
-### 2.5 Nearest Neighbour Based Recommendation
-To train the Nearest Neighbours model, we have created a compressed sparse row matrix taking ratings of each Book by each User individually. This matrix is used to train the Nearest Neighbours model and then to find n nearest neighbors using the cosine similarity metric.
 
-### 2.6 Content Based Recommendation
-This system recommends books by calculating similarities in Book Titles. For this, TF-IDF feature vectors were created for unigrams and bigrams of Book-Titles; only those books' data has been considered which are having at least 80 ratings.
+## **📖Conclusion :**
 
-### 2.7 Hybrid Approach (Collaborative+Content) Recommendation
-A hybrid recommendation system was built using the combination of both content-based filtering and collaborative filtering systems. A percentile score is given to the results obtained from both content and collaborative filtering models and is combined to recommend top n books.
+For this project our client is an online book selling firm. They now need assistance in developing a model to recommend another books on the basis of customer purchase-history and other information which are given in the datasets.
 
-## 3. Libraries Used:
-ipython-notebook - Python Text Editor
-sklearn - Machine learning library
-seaborn, matplotlib - Visualization libraries
-numpy, scipy- number python library
-pandas - data handling library
+Building a model to recommend another books is extremely beneficial to the company because it can increase their sales via recommend relevant books to their customers and optimise its business model and revenue accordingly.
+
+For modelling, it was observed that for model based collaborative filtering SVD technique worked way better than NMF with lower Mean Absolute Error (MAE) .
+Amongst the memory based approach, item-item CF performed better than user-item CF because of lower computation.
+Content-based recommendation on the basis of Tags are also doing good in terms of results.
+
+
+**Results(U-I):  Recall@5=0.23 & Recall@10=0.30**
+
+### **Key points:**
+1. Customers of age between 20 to 30 are more likely to buy books.
+
+2. Customers who are in USA are more likely to buy books than others.
+
+3. Our overall top selling authors are Agatha Cristie, William Shakespeare and Stephen King.
+
+4. If we look at the ratings distribution, most of the books have high ratings with maximum books being rated 8. Ratings below 5 are few in number.
+
+5. Our overall top selling publishers are Harlequin, Silhouette and Pocket.
+
+6. Our overall top selling books are The Lovely Bones: A Novel, Wild Animus and The Da Vinci Code, The Red Tent (Bestselling Backlist). .
+
